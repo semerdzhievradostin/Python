@@ -6,7 +6,7 @@
 
 - :telescope: I’m working as a DevOps oriented L2 Technical Support Engineer.
 
-- :seedling: Exploring Python, DevOps practices, configuratio and infrastructure manegement.
+- :seedling: Exploring Python, scripting,  DevOps practices, configuration and infrastructure manegement.
 
 - :zap: Currently doing 100 days of code in Python.
 
