@@ -18,7 +18,7 @@
   <img src="https://github.com/devicons/devicon/blob/master/icons/apachekafka/apachekafka-original-wordmark.svg" title="Kafka" alt="Kafka" width="40" height="40"/>&nbsp;
 </div>
 
-- :mailbox:How to reach me: [![Linkedin Badge](https://img.shields.io/badge/-kakbar-blue?style=flat&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/semerdzhievv/)
+- :mailbox:How to reach me: [![Linkedin Badge](https://img.shields.io/badge/-semerdzhiev-blue?style=flat&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/semerdzhievv/)
 
 ---
 
