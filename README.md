@@ -1,3 +1,9 @@
+<div align="center">
+  <img src="https://media.giphy.com/media/dWesBcTLavkZuG35MI/giphy.gif" width="600" height="300"/>
+</div>
+
+
+
 - :telescope: I’m working as a DevOps oriented L2 Technical Support Engineer.
 
 - :seedling: Exploring Python, DevOps practices, configuratio and infrastructure manegement.
