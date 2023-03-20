@@ -8,7 +8,9 @@ color_list = ["Red", "Blue", "Green", "Yellow", "Purple", "Orange", "Brown", "Bl
 
 
 position = 0
-def prepare_for_race(position=position):
+
+
+def racing_turtles(position):
     for n in range(0, 6):
         timmy = Turtle("turtle")
         timmy.penup()
@@ -17,17 +19,22 @@ def prepare_for_race(position=position):
         timmy.color(color_list[n])
     racing = True
     while racing:
-        racers = screen.turtles()
-        y = racers.ycor()
+        for turtle in screen.turtles():
+            turtle.xcor()
+            if turtle.xcor() >= 370:
+                winner = turtle.color()
+                winner = winner[0]
+                print(f"{winner} Wins !")
+                racing = False
+                if winner == bet:
+                    print("Congrats you guessed the right one!")
+                else:
+                    print("Unlucky, try again !")
+            else:
+                turtle.forward(random.choice(range(5, 25)))
 
-        if y >= 780:
-            racing = False
 
-
-
-prepare_for_race()
-
-
+racing_turtles(position)
 
 
 screen.exitonclick()
