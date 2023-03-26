@@ -1,8 +1,4 @@
-from turtle import Turtle, Screen
-import time
-UP = 90
-DOWN = 270
-MOVE_DISTANCE = 11
+from turtle import Turtle
 
 
 class Ball(Turtle):
@@ -26,6 +22,9 @@ class Ball(Turtle):
     def bounce_x(self):
         self.x_move *= -1
 
+    def reset_position(self):
+        self.goto(0, 0)
+        self.bounce_x()
 
 
 
