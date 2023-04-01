@@ -17,7 +17,6 @@ window.config(width=600, height=600, padx=100, pady=50, bg=YELLOW)
 clock = None
 
 
-
 # ---------------------------- UI SETUP ------------------------------- #
 
 
@@ -27,7 +26,10 @@ canvas.create_image(100, 112, image=tomato_image)
 timer = canvas.create_text(100, 130, text="00:00", fill="white", font=(FONT_NAME, 35, "bold"))
 break_time = False
 
+
 # ---------------------------- COUNTDOWN MECHANISM ------------------------------- #
+
+
 def countdown(count):
     global reps
     global break_time
@@ -39,6 +41,8 @@ def countdown(count):
         clock = window.after(1000, countdown, count - 1)
     if count < 1:
         start_timer()
+
+
 # ---------------------------- TIMER MECHANISM ------------------------------- #
 
 
@@ -63,7 +67,6 @@ def start_timer():
         checkmark.config(text=CHECKMARK)
 
 
-
 # ---------------------------- TIMER RESET ------------------------------- #
 
 def reset():
@@ -73,6 +76,7 @@ def reset():
     timer_text.config(text="Timer")
     checkmark.config(text="")
     break_time = False
+
 
 timer_text = Label(text="Timer", bg=YELLOW, fg=GREEN, font=(FONT_NAME, 35,))
 timer_text.grid(column=1, row=0)
