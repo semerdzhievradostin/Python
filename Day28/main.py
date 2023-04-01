@@ -58,7 +58,7 @@ def start_timer():
         break_time = False
     elif not break_time and reps <= 4:
         countdown(work_time)
-        timer_text.config(text="Timer", fg=GREEN)
+        timer_text.config(text="Work", fg=GREEN)
         reps += 1
         break_time = True
     elif reps > 4:
