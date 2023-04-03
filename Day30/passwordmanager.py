@@ -6,31 +6,31 @@ import json
 
 # ---------------------------- GENERATE PASSWORD ------------------------------- #
 letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u',
-               'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P',
-               'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+           'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P',
+           'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
 numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
 symbols = ['!', '#', '$', '%', '&', '(', ')', '*', '+']
 
 
 def generate():
     # Randomize Letters Numbers and Symbols from the Lists
-    randomLetter = ''
+    random_letter = ''
 
     for i in range(random.randint(6, 10)):
-        randomLetter += random.choice(letters)
+        random_letter += random.choice(letters)
 
-    randomNumber = ''
-
-    for i in range(random.randint(3, 5)):
-        randomNumber += random.choice(numbers)
-
-    randomSymbols = ''
+    random_number = ''
 
     for i in range(random.randint(3, 5)):
-        randomSymbols += random.choice(symbols)
+        random_number += random.choice(numbers)
+
+    random_symbols = ''
+
+    for i in range(random.randint(3, 5)):
+        random_symbols += random.choice(symbols)
 
     # Combine Letters Symbols and Numbers and then Randomize them
-    password = randomSymbols + randomNumber + randomLetter
+    password = random_symbols + random_number + random_letter
     random_password = list(password)
     random.shuffle(random_password)
     pw = "".join(random_password)
@@ -40,6 +40,7 @@ def generate():
                                                                                f"password to your clipboard ?")
     if copy:
         pyperclip.copy(f"{pw}")
+
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 
@@ -89,25 +90,22 @@ def save_data():
                 with open("data.json", "w") as data_file:
                     json.dump(data, data_file, indent=4)
 
+
 # ---------------------------- SEARCH FUNCTION ------------------------------- #
 
 def search():
-   try:
-       website = website_entry.get()
-       with open("data.json") as data_file:
-           data = json.load(data_file)
-           if website in data:
-               email = data[website]["email"]
-               password = data[website]["password"]
-               messagebox.showinfo(title="Username and Password", message=f"Email: {email}\n Password:{password}")
-           else:
-               messagebox.showinfo(title="Username and Password", message="No credentials found for the website")
-   except FileNotFoundError:
-       messagebox.showinfo(title="Username and Password", message="File with credentials not found")
-
-
-
-
+    try:
+        website = website_entry.get()
+        with open("data.json") as data_file:
+            data = json.load(data_file)
+            if website in data:
+                email = data[website]["email"]
+                password = data[website]["password"]
+                messagebox.showinfo(title="Username and Password", message=f"Email: {email}\n Password:{password}")
+            else:
+                messagebox.showinfo(title="Username and Password", message="No credentials found for the website")
+    except FileNotFoundError:
+        messagebox.showinfo(title="Username and Password", message="File with credentials not found")
 
 
 # ---------------------------- UI SETUP ------------------------------- #
@@ -148,9 +146,5 @@ search_button.grid(column=3, row=1)
 
 add_button = Button(text="Add", activeforeground="green", width=36, command=save_data)
 add_button.grid(column=1, row=4, columnspan=2)
-
-
-
-
 
 window.mainloop()
