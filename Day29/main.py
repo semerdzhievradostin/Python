@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import messagebox
 import random
 import pyperclip
+import json
 
 # ---------------------------- GENERATE PASSWORD ------------------------------- #
 letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u',
@@ -44,7 +45,12 @@ def generate():
 
 
 def save_data():
-
+    json_data = {
+        website_entry.get(): {
+            "email": em_user_entry.get(),
+            "password": password_entry.get(),
+        }
+    }
     if len(website_entry.get()) < 1 or len(password_entry.get()) < 1 or len(em_user_entry.get()) < 1:
         messagebox.showwarning(title="Warning", message="Please, do not leave any of the fields empty.")
     else:
@@ -52,9 +58,27 @@ def save_data():
                                                                                  f"\nEmail:{em_user_entry.get()}\n"
                                                                                  f"Password:{password_entry.get()}")
         if correct:
-            data = open("passwords.txt", "a")
-            data.writelines(f"{website_entry.get()} | {em_user_entry.get()} | {password_entry.get()}")
-            data.close()
+            try:
+                # --------- Updating with new data --------- #
+                with open("data.json", "r") as data_file:
+                    data = json.load(data_file)
+                    data.update(json_data)
+
+            # --------- If it's the first time importing data, ignore the above --------- #
+            except json.decoder.JSONDecodeError:
+                json_data = {
+                    website_entry.get(): {
+                        "email": em_user_entry.get(),
+                        "password": password_entry.get(),
+                    }
+                }
+                with open("data.json", "w") as data_file:
+                    json.dump(json_data, data_file, indent=4)
+
+            # --------- Saving the new data after the update --------- #
+            else:
+                with open("data.json", "w") as data_file:
+                    json.dump(data, data_file, indent=4)
 
 # ---------------------------- UI SETUP ------------------------------- #
 
