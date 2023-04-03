@@ -92,13 +92,18 @@ def save_data():
 # ---------------------------- SEARCH FUNCTION ------------------------------- #
 
 def search():
-   website = website_entry.get()
-   with open("data.json") as data_file:
-       data = json.load(data_file)
-       if website in data:
-           email = data[website]["email"]
-           password = data[website]["password"]
-           messagebox.showinfo(title="Username and Password", message=f"Email: {email}\n Password:{password}")
+   try:
+       website = website_entry.get()
+       with open("data.json") as data_file:
+           data = json.load(data_file)
+           if website in data:
+               email = data[website]["email"]
+               password = data[website]["password"]
+               messagebox.showinfo(title="Username and Password", message=f"Email: {email}\n Password:{password}")
+           else:
+               messagebox.showinfo(title="Username and Password", message="No credentials found for the website")
+   except FileNotFoundError:
+       messagebox.showinfo(title="Username and Password", message="File with credentials not found")
 
 
 
