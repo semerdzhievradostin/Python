@@ -6,13 +6,14 @@ import pandas
 import json
 import os
 
+# --------------- Check todays date --------------- #
 todays_date = date.today()
 year = todays_date.year
 month = todays_date.month
 day = todays_date.day
 
 
-
+# --------------- Read birthdays from CSV and dump them in data.json--------------- #
 birthdays = pandas.read_csv("birthdays.csv")
 birthdays_list = pandas.DataFrame(birthdays)
 frame = birthdays_list.to_dict(orient="index")
@@ -22,6 +23,10 @@ with open("data.json", "w") as data_file:
 
 happy_birthday = ""
 birthday_email = ""
+
+# --------------- Function to check if someone has birthday today --------------- #
+# --------------- Add their name to a random letter and send it to their email--------------- #
+
 
 def check_birthdays():
     global happy_birthday, birthday_email
@@ -35,16 +40,12 @@ def check_birthdays():
 
                 with open(f"letters/{birthday_letter}") as letter:
                     letter = str(letter.read())
-
-                with open(f"letters/{birthday_letter}", mode="w") as letter_to:
-                    receiver = letter.replace("[NAME]", happy_birthday)
-                    happy_birthday_to = letter_to.write(receiver)
-                    print(happy_birthday_to)
+                    letter = letter.replace("[name]", happy_birthday)
                     connection = smtplib.SMTP(host='smtp.gmail.com')
                     connection.starttls()
                     connection.login(credentialsconfig.my_email, credentialsconfig.password)
                     connection.sendmail(credentialsconfig.my_email, birthday_email,
-                                        msg=f"Subject:Happy Birthday\n\n " f"{happy_birthday_to}")
+                                        msg=f"Subject:Happy Birthday\n\n " f"{letter}")
                     connection.close()
 
 
