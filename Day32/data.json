@@ -1,0 +1,16 @@
+{
+    "0": {
+        "name": "Example",
+        "email": "semerdzhiev.radostin@gmail.com",
+        "year": 2023,
+        "month": 4,
+        "day": 5
+    },
+    "1": {
+        "name": "test",
+        "email": "test",
+        "year": 1234,
+        "month": 2,
+        "day": 4
+    }
+}
