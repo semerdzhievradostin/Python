@@ -70,13 +70,13 @@ def is_dark():
 # ------------------- If it's dark and ISS is overhead ---------------------------#
 # ------------------  Wait 60 sec and send an email  --------------------------- #
 # ------------------- Email Configs are in credentialsconfig.py----------------- #
-
-while iss_overhead and is_dark:
-    time.sleep(60)
-    connection = smtplib.SMTP(host='smtp.gmail.com')
-    connection.starttls()
-    connection.login(credentialsconfig.my_email, credentialsconfig.password)
-    connection.sendmail(credentialsconfig.my_email, credentialsconfig.receiver_email,
-                        msg=f"Subject:ISS OVERHEAD\n\n " f"International Space Station is over the sky in {your_city}"
+while True:
+    if iss_overhead and is_dark:
+        time.sleep(60)
+        connection = smtplib.SMTP(host='smtp.gmail.com')
+        connection.starttls()
+        connection.login(credentialsconfig.my_email, credentialsconfig.password)
+        connection.sendmail(credentialsconfig.my_email, credentialsconfig.receiver_email,
+                            msg=f"Subject:ISS OVERHEAD\n\n " f"International Space Station is over the sky in {your_city}"
                             f"Look up")
-    connection.close()
+        connection.close()
