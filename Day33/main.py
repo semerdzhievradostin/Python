@@ -71,8 +71,8 @@ def is_dark():
 # ------------------  Wait 60 sec and send an email  --------------------------- #
 # ------------------- Email Configs are in credentialsconfig.py----------------- #
 while True:
+    time.sleep(60)
     if iss_overhead and is_dark:
-        time.sleep(60)
         connection = smtplib.SMTP(host='smtp.gmail.com')
         connection.starttls()
         connection.login(credentialsconfig.my_email, credentialsconfig.password)
