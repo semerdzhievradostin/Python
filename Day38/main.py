@@ -1,6 +1,7 @@
 import credentials
 import requests
 from datetime import datetime
+import json
 GENDER = "MALE"
 WEIGHT = "85"
 HEIGHT = "183"
@@ -12,7 +13,7 @@ currentTime = currentDateAndTime.strftime("%H:%M:%S")
 currentDate = currentDateAndTime.strftime("%d/%m/%Y")
 
 
-sheet_url = f"https://api.sheety.co/{credentials.sheet_key}/{credentials.sheet_project}/{credentials.sheet_name}"
+sheet_url = f"https://api.sheety.co/{credentials.sheet_user}/{credentials.sheet_project}/{credentials.sheet_name}"
 nutri_endpoint = "https://trackapi.nutritionix.com/v2/natural/exercise"
 exercise = input("Tell me what exercise you did?\n")
 headers = {
@@ -20,6 +21,7 @@ headers = {
     "x-app-key": credentials.nutri_key,
     "x-remote-user-id": credentials.nutri_user,
 }
+
 parameters = {
     "query": exercise,
     "gender": GENDER,
@@ -39,10 +41,21 @@ calories_burned = exercises["nf_calories"]
 
 post_body = {
     "workout": {
-        "Date": currentDate,
-        "Time": currentTime,
-        "Exercise": user_exercise,
-        "Duration": exercise_duration_min,
-        "Calories": calories_burned,
+        "date": currentDate,
+        "time": currentTime,
+        "exercise": user_exercise,
+        "duration": exercise_duration_min,
+        "calories": calories_burned,
     }
 }
+
+
+headers_sheet = {
+    "Authorization": credentials.sheet_token,
+    "Content-Type": "application/json"
+}
+
+post_sheet = requests.post(sheet_url, json=post_body, headers=headers_sheet)
+post_sheet.raise_for_status()
+
+
